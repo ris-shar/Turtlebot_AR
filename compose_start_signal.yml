@@ -1,0 +1,13 @@
+services:
+  turtlebot3_start_signal:
+    build:
+      context: ../..  # Go up from stage_5 to iki_workspace
+      dockerfile: 25ss_rs-246849/stage_5/Dockerfile
+    container_name: turtlebot3_start_signal
+    network_mode: host
+    environment:
+      - ROS_DOMAIN_ID=10
+      - ROS_LOCALHOST_ONLY=0
+      - TURTLEBOT3_MODEL=burger
+    volumes:
+      - ./stage_5:/home/iki_workspace/src/25ss_rs-246849/stage_5

@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  turtlebot3_wall_follow:
+    image: turtlebot3_wall_follow:latest
+    build:
+      context: ../..
+      dockerfile: 25ss_rs-246849/stage_5/Dockerfile
+    network_mode: host
+    privileged: true
+    environment:
+      - ROS_DOMAIN_ID=10
+      - ROS_LOCALHOST_ONLY=0
+      - DISPLAY=${DISPLAY}
+      - TURTLEBOT3_MODEL=burger
+    volumes:
+      - ./stage_5:/home/iki_workspace/src/25ss_rs-246849/stage_5
+    command: >
+      bash -c "source /opt/ros/humble/setup.bash &&
+               source /home/iki_workspace/install/setup.bash &&
+               ros2 run autorace_real follow_wall_real"

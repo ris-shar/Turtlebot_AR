@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  turtlebot3_wall_follow_sim:
+    image: turtlebot3_wall_follow_sim:latest
+    build:
+      context: ./stage_5
+      dockerfile: Dockerfile
+    network_mode: host
+    privileged: true
+    environment:
+      - DISPLAY=${DISPLAY}
+      - TURTLEBOT3_MODEL=burger
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    command: >
+      bash -c "source /opt/ros/humble/setup.bash &&
+               source /home/iki_workspace/install/setup.bash &&
+               ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py"
